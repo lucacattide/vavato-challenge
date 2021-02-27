@@ -1,0 +1,6 @@
+# Repository - Configuration
+/coverage/*
+!/coverage/*.svg
+/node_modules
+.DS_Store
+._*

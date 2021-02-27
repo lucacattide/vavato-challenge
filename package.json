@@ -1,0 +1,34 @@
+{
+  "name": "vavato-challenge",
+  "version": "1.0.0",
+  "description": "Vavato coding challenge",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucacattide/vavato-challenge.git"
+  },
+  "keywords": [
+    "vavato",
+    "coding",
+    "challenge",
+    "luca",
+    "cattide"
+  ],
+  "author": "Luca Cattide - Senior Frontend Developer <info@lucacattide.dev> | LC (https://lucacattide.dev)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/lucacattide/vavato-challenge/issues",
+    "email": "info@lucacattide.dev"
+  },
+  "homepage": "https://github.com/lucacattide/vavato-challenge#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "jest-coverage-badges": "^1.1.2"
+  }
+}
