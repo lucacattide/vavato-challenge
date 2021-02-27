@@ -38,7 +38,7 @@ Output 3: 1 imported bottle of perfume: 32.19 1 bottle of perfume: 20.89 1 packe
 - In this particular challenge scenario, all the tests are willingly step-by-step commented to describe the exact sequence of the implementation approaches. This choice has been made to endorse the test documentation, as specified in the challenge user story requirements
 - Specific testing sections has been abstracted in order to prevent useless instruction/assertion redundancies, such as:
 
-  - createInstanceTest: For class instantiation tests
+  - `createInstanceTest`: For class instantiation tests
 
   They're located in `/src/utils.js`
 
