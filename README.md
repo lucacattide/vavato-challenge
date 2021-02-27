@@ -37,8 +37,11 @@ Output 3: 1 imported bottle of perfume: 32.19 1 bottle of perfume: 20.89 1 packe
 - The application implementation stricly follows the user story specifications. It accepts and returns a single `string` input, representing respectively the expected data as described above. The `index.js` test cases are automated to run sequentially all the possible input. For convenience, data has been managed through data structures to properly compute them
 - In this particular challenge scenario, all the tests are willingly step-by-step commented to describe the exact sequence of the implementation approaches. This choice has been made to endorse the test documentation, as specified in the challenge user story requirements
 - Specific testing sections has been abstracted in order to prevent useless instruction/assertion redundancies, such as:
-  - _createInstanceTest_: For class instantiation tests
-    They're located in `/src/utils.js`
+
+  - createInstanceTest: For class instantiation tests
+
+  They're located in `/src/utils.js`
+
 - Some of the output test case calculations were wrong. These have been re-caluclated with the correct results. Specifically:
   - _Output 2_: 1 imported bottle of perfume: 54.65 -> **54.63** Sales Taxes: 7.65 -> **7.63** Total: 65.15 -> **65.13**
     - Explanation:
