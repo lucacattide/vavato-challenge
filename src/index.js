@@ -41,9 +41,9 @@ const shoppingReceipt = (cart) => {
   // Price/Cost/Taxes calculation
   products.forEach((product) => {
     const productCharged = getProductPriceCharged(
-      product.good.getData(),
+      product.good.getData,
       salesTax,
-      importDutyTax.getRate()
+      importDutyTax.getRate
     );
 
     // Set charged products
@@ -54,7 +54,7 @@ const shoppingReceipt = (cart) => {
       imported: product.good.imported
     });
     // Update receipt
-    receipt.setReceipt({
+    receipt.setReceiptInfo({
       cost: product.good.price,
       taxes: productCharged.taxes
     });
@@ -63,12 +63,10 @@ const shoppingReceipt = (cart) => {
   taxedProducts.forEach((taxedProduct) => output += `${taxedProduct.quantity} `+
   `${taxedProduct.imported ? 'imported' : ''} `+
   // Ensures to keep even trailing zeroes
-  `${taxedProduct.name}: ${taxedProduct.price.toFixed(2)}`);
+  `${taxedProduct.name}: ${taxedProduct.price.toFixed(2)} `);
 
-  output += `
-    Sales Taxes: ${receipt.getTotalTaxes.toFixed(2)}
-    Total: ${receipt.getTotalCost.toFixed(2)}
-  `;
+  output += `Sales Taxes: ${receipt.getTotalTaxes.toFixed(2)}`+
+  `Total: ${receipt.getTotalCost.toFixed(2)}`;
 
   return output;
 };

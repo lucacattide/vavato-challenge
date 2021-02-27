@@ -51,5 +51,16 @@ export default class Receipt {
   get getTotalTaxes() {
     return this.totalTaxes;
   }
+
+  /**
+   * @description Receipt info setter
+   * @author Luca Cattide
+   * @date 27/02/2021
+   * @param {object} data Product base price & calculated taxes amount
+   * @memberof Receipt
+   */
+  setReceiptInfo(data) {
+    this.setReceipt = data;
+  }
 }
 // Module End
