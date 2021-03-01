@@ -89,10 +89,10 @@ const shoppingReceipts = {
       32.19,
       20.89,
       shoppingCarts.cart3[2].price,
-      11.85
+      11.81
     ],
-    taxes: 6.70,
-    total: 74.68
+    taxes: 6.66,
+    total: 74.64
   }
 };
 /**

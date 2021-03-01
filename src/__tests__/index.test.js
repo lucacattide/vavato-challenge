@@ -17,7 +17,7 @@ describe('Main Unit Test', () => {
       '1 imported bottle of perfume: 54.63 Sales Taxes: 7.63 Total: 65.13',
       receipt3: '1 imported bottle of perfume: 32.19 '+
       '1  bottle of porfume: 20.89 1  packed of headache pills: 9.75 '+
-      '1 imported box of chocolates: 11.85 Sales Taxes: 6.70 Total: 74.68'
+      '1 imported box of chocolates: 11.81 Sales Taxes: 6.66 Total: 74.64'
     };
     let receipts = {};
 
