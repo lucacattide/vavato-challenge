@@ -1,7 +1,7 @@
 // Module Start
 // JS imports
 import Product from '../classes/Product';
-import {createIstanceTest} from '../utils';
+import {createInstanceTest} from '../utils';
 
 // Product Unit Testing
 // Class mocking
@@ -22,30 +22,22 @@ describe('Product Unit Test', () => {
     Product.mockClear();
   });
   test('It calls the Product constructor', () => {
-    createIstanceTest(Product, mockData);
+    createInstanceTest(Product, mockData);
   });
   test('It gets the product information', () => {
     // Mock clearing assertion
     expect(Product).not.toHaveBeenCalled();
 
     // Mocked instantiation
-    const customProduct = createIstanceTest(Product, mockData);
-    // Instance method mock
-    const mockGetData = jest.fn();
+    const customProduct = createInstanceTest(Product, mockData);
 
     // Mocked getter definition
-    Product.prototype.getData = mockGetData;
-
-    // Result mock
-    mockGetData.mockReturnValue(mockData);
+    Product.prototype.getData = mockData;
 
     // Getter action
-    const customProductInfo = customProduct.getData();
+    const customProductInfo = customProduct.getData;
 
-    // Method/Data assertions
-    // Method calling
-    expect(mockGetData).toHaveBeenCalled();
-    // Result comparision
+    // Data assertion
     expect(customProductInfo).toEqual(mockData);
   });
 });

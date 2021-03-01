@@ -1,7 +1,7 @@
 // Module Start
 // JS imports
 import Tax from '../classes/Tax';
-import {createIstanceTest} from '../utils';
+import {createInstanceTest} from '../utils';
 
 // Tax Unit Testing
 // Class mocking
@@ -17,30 +17,22 @@ describe('Tax Unit Test', () => {
     Tax.mockClear();
   });
   test('It calls the Tax constructor', () => {
-    createIstanceTest(Tax, mockData);
+    createInstanceTest(Tax, mockData);
   });
   test('It gets the tax rate', () => {
     // Mock clearing assertion
     expect(Tax).not.toHaveBeenCalled();
 
     // Mocked instantiation
-    const customTax = createIstanceTest(Tax, mockData);
-    // Instance method mock
-    const mockGetRate = jest.fn();
+    const customTax = createInstanceTest(Tax, mockData);
 
     // Mocked getter definition
-    Tax.prototype.getRate = mockGetRate;
-
-    // Result mock
-    mockGetRate.mockReturnValue(mockData[0]);
+    Tax.prototype.getRate = mockData[0];
 
     // Getter action
-    const customTaxRate = customTax.getRate();
+    const customTaxRate = customTax.getRate;
 
-    // Method/Data assertions
-    // Method calling
-    expect(mockGetRate).toHaveBeenCalled();
-    // Result comparision
+    // Data assertion
     expect(customTaxRate).toEqual(mockData[0]);
   });
   test('It gets the tax exemptions', () => {
@@ -48,23 +40,15 @@ describe('Tax Unit Test', () => {
     expect(Tax).not.toHaveBeenCalled();
 
     // Mocked instantiation
-    const customTax = createIstanceTest(Tax, mockData);
-    // Instance method mock
-    const mockGetExemptions = jest.fn();
+    const customTax = createInstanceTest(Tax, mockData);
 
     // Mocked getter definition
-    Tax.prototype.getExemptions = mockGetExemptions;
-
-    // Result mock
-    mockGetExemptions.mockReturnValue(mockData[1]);
+    Tax.prototype.getExemptions = mockData[1];
 
     // Getter action
-    const customTaxExemptions = customTax.getExemptions();
+    const customTaxExemptions = customTax.getExemptions;
 
-    // Method/Data assertions
-    // Method calling
-    expect(mockGetExemptions).toHaveBeenCalled();
-    // Result comparision
+    // Data assertion
     expect(customTaxExemptions).toEqual(mockData[1]);
   });
 });

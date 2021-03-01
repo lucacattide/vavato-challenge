@@ -1,66 +1,64 @@
 // Module Start
 // JS imports
 import Receipt from '../classes/Receipt';
-import {createIstanceTest} from '../utils';
+import {createInstanceTest} from '../utils';
 
 // Receipt Unit Testing
 // Class mocking
 jest.mock('../classes/Receipt');
 
 describe('Receipt Unit Test', () => {
+  const mockData = {
+    cost: 100,
+    taxes: 50,
+    totalCost: 0,
+    totalTaxes: 0
+  };
+
   // Startup
   beforeEach(() => {
     // Instance clear
     Receipt.mockClear();
   });
   test('It calls the Receipt constructor', () => {
-    createIstanceTest(Receipt);
+    createInstanceTest(Receipt);
   });
   test('It sets the receipt information', () => {
-    const mockData = {
-      cost: 100,
-      taxes: 50
-    };
-
     // Mock clearing assertion
     expect(Receipt).not.toHaveBeenCalled();
 
     // Mocked instantiation
-    const customReceipt = createIstanceTest(Receipt);
-    // Instance method mock
-    const mockSetReceipt = jest.fn();
+    const customReceipt = createInstanceTest(Receipt);
 
     // Mocked Setter definition
-    Receipt.prototype.setReceipt = mockSetReceipt;
+    Object.defineProperty(customReceipt, 'setReceipt', {
+      set: (data) => {
+        mockData.totalCost += data.cost;
+        mockData.totalTaxes += data.taxes;
+      }
+    });
 
     // Setter action
-    customReceipt.setReceipt(mockData);
+    customReceipt.setReceipt = mockData;
 
     // Method calling assertion
-    expect(mockSetReceipt).toHaveBeenCalled();
+    expect(mockData.totalCost).toEqual(mockData.cost);
+    expect(mockData.totalTaxes).toEqual(mockData.taxes);
   });
   test('It gets the receipt total cost', () => {
     // Mock clearing assertion
     expect(Receipt).not.toHaveBeenCalled();
 
     // Mocked instantiation
-    const customReceipt = createIstanceTest(Receipt);
-    // Instance method mock
-    const mockGetTotalCost = jest.fn();
+    const customReceipt = createInstanceTest(Receipt);
 
     // Mocked getter definition
-    Receipt.prototype.getTotalCost = mockGetTotalCost;
-
-    // Result mock
-    mockGetTotalCost.mockReturnValue(0);
+    Receipt.prototype.getTotalCost = 0;
 
     // Getter action
-    const customTotalCost = customReceipt.getTotalCost();
+    const customTotalCost = customReceipt.getTotalCost;
 
-    // Method/Data assertions
-    // Method calling
-    expect(mockGetTotalCost).toHaveBeenCalled();
-    // Result comparision
+    // Data assertion
     expect(customTotalCost).toEqual(0);
   });
   test('It gets the receipt total taxes amount', () => {
@@ -68,23 +66,29 @@ describe('Receipt Unit Test', () => {
     expect(Receipt).not.toHaveBeenCalled();
 
     // Mocked instantiation
-    const customReceipt = createIstanceTest(Receipt);
-    // Instance method mock
-    const mockGetTotalTaxes = jest.fn();
+    const customReceipt = createInstanceTest(Receipt);
 
     // Mocked getter definition
-    Receipt.prototype.getTotalTaxes = mockGetTotalTaxes;
-
-    // Result mock
-    mockGetTotalTaxes.mockReturnValue(0);
+    Receipt.prototype.getTotalTaxes = 0;
 
     // Getter action
-    const customTotalTaxes = customReceipt.getTotalTaxes();
+    const customTotalTaxes = customReceipt.getTotalTaxes;
 
-    // Method/Data assertions
-    // Method calling
-    expect(mockGetTotalTaxes).toHaveBeenCalled();
-    // Result comparision
+    // Data assertion
     expect(customTotalTaxes).toEqual(0);
+  });
+  test('It sets the receipt data', () => {
+    // Mock clearing assertion
+    expect(Receipt).not.toHaveBeenCalled();
+
+    // Mocked instantiation
+    const customReceipt = createInstanceTest(Receipt);
+    const {cost, taxes} = mockData;
+
+    // Setter action
+    customReceipt.setReceiptInfo({cost, taxes});
+
+    // Method calling assertion
+    expect(customReceipt.setReceiptInfo).toHaveBeenCalled();
   });
 });
