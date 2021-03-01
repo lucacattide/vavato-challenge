@@ -101,30 +101,32 @@ const shoppingReceipts = {
  * @author Luca Cattide
  * @date 27/02/2021
  * @param {string} entity Testing class
- * @param {object|array} mockData Testing data
+ * @param {object|array} [mockData] Testing data
  * @returns
  */
-const createIstanceTest = (entity, mockData = null) => {
+const createInstanceTest = (entity, mockData = null) => {
   let instance = null;
 
   switch(entity) {
     case Product:
-      instance = new Product({...mockData});
+      const {name, price, category, imported} = mockData;
+
+      instance = new Product(name, price, category, imported);
 
       // Constructor assertion
-      expect(Product).toHaveBeenCalledTimes(1);
+      expect(Product).toHaveBeenCalled();
       break;
 
     case Receipt:
       instance = new Receipt();
 
-      expect(Receipt).toHaveBeenCalledTimes(1);
+      expect(Receipt).toHaveBeenCalled();
       break;
 
     case Tax:
-      instance = new Tax(...mockData);
+      instance = new Tax([...mockData]);
 
-      expect(Tax).toHaveBeenCalledTimes(1);
+      expect(Tax).toHaveBeenCalled();
       break;
 
     default:
@@ -147,9 +149,9 @@ const getProductPriceCharged = (product, salesTax, importDutyTax) => {
 
   // Exemptions check
   // If the product category is not exempt then charge the price
-  if (!salesTax.getExemptions()
+  if (!salesTax.getExemptions
   .some((exemption) => exemption === product.category)) {
-    salesTaxAmount = (product.price * salesTax.getRate()) / 100;
+    salesTaxAmount = (product.price * salesTax.getRate) / 100;
     productPriceCharged += salesTaxAmount;
   }
 
@@ -182,7 +184,7 @@ const getRoundedValue = (value) => {
 export {
   shoppingCarts,
   shoppingReceipts,
-  createIstanceTest,
+  createInstanceTest,
   getProductPriceCharged,
   getRoundedValue
 }
