@@ -35,20 +35,50 @@ Output 3: 1 imported bottle of perfume: 32.19 1 bottle of perfume: 20.89 1 packe
 ### Development Notes
 
 - The application implementation stricly follows the user story specifications. It accepts and returns a single `string` input, representing respectively the expected data as described above. The `index.js` test cases are automated to run sequentially all the possible input. For convenience, data has been managed through data structures to properly compute them
-- In this particular challenge scenario, all the tests are willingly step-by-step commented to describe the exact sequence of the implementation approaches. This choice has been made to endorse the test documentation, as specified in the challenge user story requirements
+- Data has been abstracted in 3 different entities, consisting of:
+
+  - `Product`: Represents a product and its attributes. Two additionaly properties has bee added in order to manage the taxes calculation:
+    - `category`: Product category, to determine sales taxation requirement
+    - `imported`: Importation status, to determine import duty taxation requirement
+  - `Tax`: Represents a tax and its attributes. May be applied to product prices
+  - `Receipt`: Represents a shopping receipt and its attributes
+
+  Please consult the respective documentation for more details
+
+- In this particular challenge scenario, all the tests are willingly step-by-step commented to describe the exact sequence of the implementation approaches. This choice has been made to endorse the test documentation, as specified in the challenge user story requirements - not reflecting a real case
 - Specific testing sections has been abstracted in order to prevent useless instruction/assertion redundancies, such as:
 
-  - `createInstanceTest`: For class instantiation tests
+  - `createInstanceTest(Class, item?)`: For class instantiation tests
+  - `getProductPriceCharged(arg1, arg2, number)`: For product price and taxes calculation
+  - `getRoundedValue(number)`: To round each value according to specifications
 
   They're located in `/src/utils.js`
 
-- Some of the output test case calculations were wrong. These have been re-caluclated with the correct results. Specifically:
+- Some of the output test case calculations were wrong. These have been re-caluclated with the correct results - accordingly to the 2nd decimal digit rounding (0.05) rule. Specifically:
   - _Output 2_: 1 imported bottle of perfume: 54.65 -> **54.63** Sales Taxes: 7.65 -> **7.63** Total: 65.15 -> **65.13**
     - Explanation:
       - 47.50 \* 15 (sales + import tax) / 100 = 7.125 -> which is rounded to **7.13**
       - 7.13 + 0.50 (imported box of chocolates sales tax) = **7.63**
+  - _Output 3_: 1 imported box of chocolates: 11.85 -> **11.81** Sales Taxes: 6.70 -> **6.66** Total: 74.68 -> **74.64**
+    - Explanation:
+      - 11.25 \* 5 (import tax) / 100 = 0,5625 -> which is rounded to **0.56**
+      - 0.56 + 6.10 (remaining product taxes) = **6.66**
+
+More details are indicated inside the code comments - where needed. For any further in-depth consideration, please contact me on info@lucacattide.dev or feel free to open an issue.
 
 ## Getting Started
+
+To build the application:
+
+```
+npm run build
+```
+
+To run the application:
+
+```
+npm run start
+```
 
 ## Testing
 
