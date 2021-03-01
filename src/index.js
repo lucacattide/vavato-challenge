@@ -55,7 +55,7 @@ const shoppingReceipt = (cart) => {
     });
     // Update receipt
     receipt.setReceiptInfo({
-      cost: product.good.price,
+      cost: productCharged.price,
       taxes: productCharged.taxes
     });
   });
@@ -65,7 +65,7 @@ const shoppingReceipt = (cart) => {
   // Ensures to keep even trailing zeroes
   `${taxedProduct.name}: ${taxedProduct.price.toFixed(2)} `);
 
-  output += `Sales Taxes: ${receipt.getTotalTaxes.toFixed(2)}`+
+  output += `Sales Taxes: ${receipt.getTotalTaxes.toFixed(2)} `+
   `Total: ${receipt.getTotalCost.toFixed(2)}`;
 
   return output;
