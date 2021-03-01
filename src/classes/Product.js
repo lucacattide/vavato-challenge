@@ -28,7 +28,7 @@ export default class Product {
    * @description Product getter
    * @author Luca Cattide
    * @date 26/02/2021
-   * @rreadonly
+   * @readonly
    * @memberof Product
    */
   get getData() {
